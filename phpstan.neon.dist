@@ -1,0 +1,8 @@
+parameters:
+  level: 9
+  paths:
+    - src
+    - test
+  checkMissingIterableValueType: false
+  ignoreErrors:
+    - '/Parameter .+ of method .+::(failureDescription|matches)\(\) should be contravariant with parameter \$.+ \(mixed\) of method PHPUnit\\Framework\\Constraint\\Constraint::(failureDescription|match)/'
