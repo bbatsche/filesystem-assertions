@@ -31,7 +31,7 @@ jobs:
           version: "${{ matrix.composer_version }}"
 
       - name: Check Declared Dependencies
-        run: /vendor/bin/composer-require-checker
+        run: ./vendor/bin/composer-require-checker
 
       - name: Check Code Style
         uses: php-actions/composer@v6
