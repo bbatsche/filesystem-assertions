@@ -28,11 +28,11 @@ jobs:
         uses: php-actions/composer@v6
         with:
           php_version: "${{ matrix.php }}"
-          version: "${{ composer_version }}"
+          version: "${{ matrix.composer_version }}"
 
       - name: Check Code Style
         uses: php-actions/composer@v6
         with:
           command: "style:check"
           php_version: "${{ matrix.php }}"
-          version: "${{ composer_version }}"
+          version: "${{ matrix.composer_version }}"
