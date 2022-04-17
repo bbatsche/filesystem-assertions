@@ -5,6 +5,7 @@ on:
     paths:
       - '**.php'
       - '**.json'
+      - '**.yml'
 
 jobs:
   static-analysis:
