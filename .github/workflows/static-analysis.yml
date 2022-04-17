@@ -13,7 +13,13 @@ jobs:
 
     strategy:
       matrix:
-        php: [7.2, 7.3, 7.4, 8.0, 8.1]
+        php: ["7.4", "8.0", "8.1"]
+        composer_version: [2]
+        include:
+          - php: "7.2"
+            composer_version: 1
+          - php: "7.3"
+            composer_version: 1
 
     steps:
       - uses: actions/checkout@v3
@@ -21,10 +27,12 @@ jobs:
       - name: Install Dependencies
         uses: php-actions/composer@v6
         with:
-          php_version: ${{ matrix.php }}
+          php_version: "${{ matrix.php }}"
+          version: "${{ composer_version }}"
 
       - name: Check Code Style
         uses: php-actions/composer@v6
         with:
           command: "style:check"
-          php_version: ${{ matrix.php }}
+          php_version: "${{ matrix.php }}"
+          version: "${{ composer_version }}"
