@@ -1,15 +1,18 @@
 name: Static Analysis
+
 on:
   pull_request:
     paths:
       - '**.php'
       - '**.json'
+
 jobs:
   static-analysis:
+    run_on: ubuntu-18.04
+
     strategy:
       matrix:
-        php: [7.2, 7.3, 7.4, 8.0, 8.1]]
-    run_on: ubuntu-18.04
+        php: [7.2, 7.3, 7.4, 8.0, 8.1]
 
     steps:
       - uses: actions/checkout@v3
