@@ -39,12 +39,6 @@ class SomeTest extends TestCase
 ## Available Assertions
 
 ```php
-// Assert that a filesystem entry exists.
-// These assertions only check if a path is a normal file, directory, or symbolic link.
-// They aren't compatible with block devices, sockets, or other nonstandard file types.
-assertFsEntryExists(string $file, string $message = '')
-assertFsEntryDoesNotExist(string $file, string $message = '')
-
 // Assert that $directory contains one or more files.
 assertDirectoryContainsFiles(string $directory, array $files, string $message = '');
 assertDirectoryDoesNotContainFiles(string $directory, array $files, string $message = '')
@@ -61,13 +55,17 @@ assertFileHasGroup(string $file, string $group, string $message = '')
 assertFileDoesNotHaveGroupId(string $file, int $gid, string $message = '')
 assertFileDoesNotHaveGroup(string $file, string $group, string $message = '')
 
-// Assert that $file is executable.
-assertFileIsExecutable(string $file, string $message = '')
-assertFileIsNotExecutable(string $file, string $message = '')
+// Assert that $path is a regular file.
+assertIsFile(string $path, string $message = '')
+assertIsNotFile(string $path, string $message = '')
 
 // Assert that $file is a symbolic link.
 assertFileIsLink(string $file, string $message = '')
 assertFileIsNotLink(string $file, string $message = '')
+
+// Assert that $file is executable.
+assertFileIsExecutable(string $file, string $message = '')
+assertFileIsNotExecutable(string $file, string $message = '')
 
 // Assert that $file is a symbolic link and points to $target.
 assertSymbolicLinkPointsTo(string $file, string $target, string $message = '')

@@ -31,14 +31,6 @@ final class FilesystemAssertionsTest extends TestCase
         self::assertFileIsNotExecutable(self::FIXTURE_DIR . '/File2');
     }
 
-    public function testExists(): void
-    {
-        self::assertFsEntryExists(self::FIXTURE_DIR);            // Directory
-        self::assertFsEntryExists(self::FIXTURE_DIR . '/File1'); // Regular file
-        self::assertFsEntryExists(self::FIXTURE_DIR . '/File3'); // Symbolic link
-        self::assertFsEntryDoesNotExist(self::FIXTURE_DIR . '/File4');
-    }
-
     public function testFileGroup(): void
     {
         // we assume the same user & group owns the entire repo
@@ -90,6 +82,13 @@ final class FilesystemAssertionsTest extends TestCase
         self::assertFileHasUser(self::FIXTURE_DIR, $userName);
         self::assertFileHasUser(self::FIXTURE_DIR . '/File1', $userName);
         self::assertFileHasUser(self::FIXTURE_DIR . '/File3', $userName);
+    }
+
+    public function testIsFile(): void
+    {
+        self::assertIsFile(self::FIXTURE_DIR . '/File1');
+        self::assertIsNotFile(self::FIXTURE_DIR);
+        self::assertIsNotFile(self::FIXTURE_DIR . '/File4');
     }
 
     public function testSymbolicLink(): void
