@@ -45,11 +45,13 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-composer-
+          key: ${{ runner.os }}-composer-${{ matrix.version.php }}-${{ hashFiles('**/composer.json') }}
+          restore-keys:
+            - ${{ runner.os }}-composer-${{ matrix.versions.php }}
+            - ${{ runner.os }}-composer-
 
       - name: Install Dependencies
-        run: composer install
+        run: composer install --no-interaction --no-suggest --no-progress
 
       - name: Check Declared Dependencies
         run: ./vendor/bin/composer-require-checker
