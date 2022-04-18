@@ -2,6 +2,10 @@
 
 This is a small collection PHPUnit assertions for testing filesystem entries. It is meant to compliment the assertions already built into PHPunit.
 
+[![Latest Stable Version](https://img.shields.io/packagist/v/bebat/filesystem-assertions.svg?style=plastic)](https://packagist.org/packages/bebat/filesystem-assertions)
+[![License](https://img.shields.io/packagist/l/bebat/verify.svg?style=plastic)](https://packagist.org/packages/bebat/filesystem-assertions)
+[![Acceptance Test Status](https://github.com/bbatsche/filesystem-assertions/actions/workflows/acceptance.yml/badge.svg)](https://github.com/bbatsche/filesystem-assertions/actions/workflows/acceptance.yml)
+[![Code Coverage](https://codecov.io/gh/bbatsche/filesystem-assertions/branch/main/graph/badge.svg)](https://codecov.io/gh/bbatsche/filesystem-assertions)
 
 ## Table of Contents
 
