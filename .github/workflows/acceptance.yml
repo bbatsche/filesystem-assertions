@@ -60,7 +60,7 @@ jobs:
         run: composer style:check
 
       - name: Run Static Analysis
-        run: composer test:static
+        run: composer test:static -- --no-progress
 
       - name: Run Unit & Functional Tests
         run: composer test:coverage
