@@ -8,6 +8,11 @@ on:
       - phpstan.neon.dist
       - phpunit.xml
       - '.github/workflows/**'
+  push:
+    branches:
+      - main
+  release:
+    types: [published]
 
 jobs:
   acceptance-tests:
