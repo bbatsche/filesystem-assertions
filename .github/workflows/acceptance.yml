@@ -49,27 +49,16 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Dependencies
-        uses: php-actions/composer@v6
-        with:
-          php_version: "${{ matrix.versions.php }}"
-          version: "${{ matrix.versions.composer }}"
+        run: composer install
 
       - name: Check Declared Dependencies
         run: ./vendor/bin/composer-require-checker
 
       - name: Check Code Style
-        uses: php-actions/composer@v6
-        with:
-          command: "style:check"
-          php_version: "${{ matrix.versions.php }}"
-          version: "${{ matrix.versions.composer }}"
+        run: composer style:check
 
       - name: Run Static Analysis
-        uses: php-actions/composer@v6
-        with:
-          command: "test:static"
-          php_version: "${{ matrix.versions.php }}"
-          version: "${{ matrix.versions.composer }}"
+        run: composer test:static
 
       - name: Run Unit & Functional Tests
         run: composer test:coverage
