@@ -11,6 +11,8 @@ trait SpyHadArgumentsTrait
 {
     /**
      * Assert a given invocation of a phpmock Spy had some arguments.
+     *
+     * @param non-empty-array<int, mixed> $args
      */
     protected function assertSpyHadArguments(Spy $spy, array $args, int $invocation = 0, string $message = ''): void
     {

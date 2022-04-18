@@ -1,0 +1,56 @@
+name: Acceptance Tests
+
+on:
+  pull_request:
+    paths:
+      - '**.php'
+      - '**.json'
+      - '**.yml'
+
+jobs:
+  acceptance-tests:
+    name: Acceptance Tests PHP ${{ matrix.php }}
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        php: ["8.1", "8.0", "7.4"]
+        composer_version: [2]
+        include:
+          - php: "7.3"
+            composer_version: 1
+          - php: "7.2"
+            composer_version: 1
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "${{ matrix.php }}"
+          version: "${{ matrix.composer_version }}"
+
+      - name: Check Declared Dependencies
+        run: ./vendor/bin/composer-require-checker
+
+      - name: Check Code Style
+        uses: php-actions/composer@v6
+        with:
+          command: "style:check"
+          php_version: "${{ matrix.php }}"
+          version: "${{ matrix.composer_version }}"
+
+      - name: Run Static Analysis
+        uses: php-actions/composer@v6
+        with:
+          command: "test:static"
+          php_version: "${{ matrix.php }}"
+          version: "${{ matrix.composer_version }}"
+
+      - name: Run Unit & Functional Tests
+        uses: php-actions/composer@v6
+        with:
+          command: "test:unit"
+          php_version: "${{ matrix.php }}"
+          version: "${{ matrix.composer_version }}"
