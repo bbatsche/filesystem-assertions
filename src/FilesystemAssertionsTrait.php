@@ -11,6 +11,7 @@ use BeBat\FilesystemAssertions\Constraint\HasLinkTarget;
 use BeBat\FilesystemAssertions\Constraint\HasUser;
 use BeBat\FilesystemAssertions\Constraint\HasUserId;
 use BeBat\FilesystemAssertions\Constraint\IsExecutable;
+use BeBat\FilesystemAssertions\Constraint\IsFile;
 use BeBat\FilesystemAssertions\Constraint\IsLink;
 use BeBat\FilesystemAssertions\Constraint\PermsEqual;
 use BeBat\FilesystemAssertions\Constraint\PermsMatch;
@@ -50,7 +51,7 @@ trait FilesystemAssertionsTrait
      */
     public static function assertFileDoesNotHaveGroup(string $file, string $group, string $message = ''): void
     {
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new HasGroup($group)), $message);
     }
@@ -60,7 +61,7 @@ trait FilesystemAssertionsTrait
      */
     public static function assertFileDoesNotHaveGroupId(string $file, int $gid, string $message = ''): void
     {
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new HasGroupId($gid)), $message);
     }
@@ -70,7 +71,7 @@ trait FilesystemAssertionsTrait
      */
     public static function assertFileDoesNotHaveUser(string $file, string $user, string $message = ''): void
     {
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new HasUser($user)), $message);
     }
@@ -80,7 +81,7 @@ trait FilesystemAssertionsTrait
      */
     public static function assertFileDoesNotHaveUserId(string $file, int $uid, string $message = ''): void
     {
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new HasUserId($uid)), $message);
     }
@@ -90,7 +91,7 @@ trait FilesystemAssertionsTrait
      */
     public static function assertFileHasGroup(string $file, string $group, string $message = ''): void
     {
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, new HasGroup($group), $message);
     }
@@ -100,7 +101,7 @@ trait FilesystemAssertionsTrait
      */
     public static function assertFileHasGroupId(string $file, int $gid, string $message = ''): void
     {
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, new HasGroupId($gid), $message);
     }
@@ -110,7 +111,7 @@ trait FilesystemAssertionsTrait
      */
     public static function assertFileHasUser(string $file, string $user, string $message = ''): void
     {
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, new HasUser($user), $message);
     }
@@ -120,7 +121,7 @@ trait FilesystemAssertionsTrait
      */
     public static function assertFileHasUserId(string $file, int $uid, string $message = ''): void
     {
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, new HasUserId($uid), $message);
     }
@@ -130,7 +131,7 @@ trait FilesystemAssertionsTrait
      */
     public static function assertFileIsExecutable(string $file, string $message = ''): void
     {
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, new IsExecutable(), $message);
     }
@@ -148,7 +149,7 @@ trait FilesystemAssertionsTrait
      */
     public static function assertFileIsNotExecutable(string $file, string $message = ''): void
     {
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new IsExecutable()), $message);
     }
@@ -172,7 +173,7 @@ trait FilesystemAssertionsTrait
             $perms = decoct($perms);
         }
 
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new PermsEqual($perms)), $message);
     }
@@ -188,7 +189,7 @@ trait FilesystemAssertionsTrait
             $perms = (int) octdec($perms);
         }
 
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new PermsMatch($perms)), $message);
     }
@@ -204,7 +205,7 @@ trait FilesystemAssertionsTrait
             $perms = decoct($perms);
         }
 
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, new PermsEqual($perms), $message);
     }
@@ -222,35 +223,25 @@ trait FilesystemAssertionsTrait
             $perms = (int) octdec($perms);
         }
 
-        static::assertFsEntryExists($file, $message);
+        Assert::assertFileExists($file, $message);
 
         Assert::assertThat($file, new PermsMatch($perms), $message);
     }
 
     /**
-     * Assert that a path does not exist.
+     * Assert $path is a regular file.
      */
-    public static function assertFsEntryDoesNotExist(string $file, string $message = ''): void
+    public static function assertIsFile(string $path, string $message = ''): void
     {
-        Assert::assertThat(
-            $file,
-            Assert::logicalNot(Assert::logicalOr(Assert::fileExists(), Assert::directoryExists(), new IsLink())),
-            $message
-        );
+        Assert::assertThat($path, new IsFile(), $message);
     }
 
     /**
-     * Assert that a path exists (that it is a file, directory, or symbolic link).
-     *
-     * Note: This assertion doesn't check for more specialized file types, like sockets, named pipes, or block devices.
+     * Assert $path is not a regular file.
      */
-    public static function assertFsEntryExists(string $file, string $message = ''): void
+    public static function assertIsNotFile(string $path, string $message = ''): void
     {
-        Assert::assertThat(
-            $file,
-            Assert::logicalOr(Assert::fileExists(), Assert::directoryExists(), new IsLink()),
-            $message
-        );
+        Assert::assertThat($path, Assert::logicalNot(new IsFile()), $message);
     }
 
     /**
