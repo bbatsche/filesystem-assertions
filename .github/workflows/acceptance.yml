@@ -11,7 +11,7 @@ on:
 
 jobs:
   acceptance-tests:
-    name: Acceptance Tests PHP ${{ matrix.php }}
+    name: Acceptance Tests PHP ${{ matrix.versions.php }}
     runs-on: ubuntu-18.04
 
     strategy:
@@ -35,6 +35,7 @@ jobs:
         with:
           php-version: "${{ matrix.versions.php }}"
           coverage: pcov
+          tools: composer:v${{ matrix.versions.composer }}
 
       - name: Get composer cache directory
         id: composer-cache
@@ -71,11 +72,7 @@ jobs:
           version: "${{ matrix.versions.composer }}"
 
       - name: Run Unit & Functional Tests
-        uses: php-actions/composer@v6
-        with:
-          command: "test:coverage"
-          php_version: "${{ matrix.versions.php }}"
-          version: "${{ matrix.versions.composer }}"
+        run: composer test:coverage
 
       - name: Upload Coverage
         uses: codecov/codecov-action@v2
