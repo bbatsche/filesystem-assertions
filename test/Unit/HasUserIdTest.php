@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert\Test\Unit;
+namespace BeBat\FilesystemAssertions\Test\Unit;
 
-use BeBat\FilesystemAssert\Constraint\HasUserId;
+use BeBat\FilesystemAssertions\Constraint\HasUserId;
 use Codeception\AssertThrows;
 use phpmock\functions\FixedValueFunction;
 use phpmock\spy\Spy;
@@ -25,7 +25,7 @@ final class HasUserIdTest extends TestCase
     protected function setUp(): void
     {
         $this->fileownerSpy = new Spy(
-            'BeBat\\FilesystemAssert\\Constraint',
+            'BeBat\\FilesystemAssertions\\Constraint',
             'fileowner',
             (new FixedValueFunction(501))->getCallable()
         );

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert\Test\Unit;
+namespace BeBat\FilesystemAssertions\Test\Unit;
 
-use BeBat\FilesystemAssert\Constraint\HasUser;
+use BeBat\FilesystemAssertions\Constraint\HasUser;
 use Codeception\AssertThrows;
 use phpmock\Mock;
 use phpmock\MockBuilder;
@@ -27,7 +27,7 @@ final class HasUserTest extends TestCase
     protected function setUp(): void
     {
         $this->fileownerSpy = (new MockBuilder())
-            ->setNamespace('BeBat\\FilesystemAssert\\Constraint')
+            ->setNamespace('BeBat\\FilesystemAssertions\\Constraint')
             ->setName('fileowner')
             ->setFunction(
                 static function (string $path) {
@@ -48,7 +48,7 @@ final class HasUserTest extends TestCase
             )->build();
 
         $this->getpwuidSpy = (new MockBuilder())
-            ->setNamespace('BeBat\\FilesystemAssert\\Constraint')
+            ->setNamespace('BeBat\\FilesystemAssertions\\Constraint')
             ->setName('posix_getpwuid')
             ->setFunction(
                 static function (int $gid) {

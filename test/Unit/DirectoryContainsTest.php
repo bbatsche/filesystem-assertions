@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert\Test\Unit;
+namespace BeBat\FilesystemAssertions\Test\Unit;
 
-use BeBat\FilesystemAssert\Constraint\DirectoryContains;
+use BeBat\FilesystemAssertions\Constraint\DirectoryContains;
 use Codeception\AssertThrows;
 use phpmock\functions\FixedValueFunction;
 use phpmock\spy\Spy;
@@ -25,7 +25,7 @@ final class DirectoryContainsTest extends TestCase
     protected function setUp(): void
     {
         $this->scandirSpy = new Spy(
-            'BeBat\\FilesystemAssert\\Constraint',
+            'BeBat\\FilesystemAssertions\\Constraint',
             'scandir',
             (new FixedValueFunction(['.', '..', 'file1', 'file2', 'file3']))->getCallable()
         );

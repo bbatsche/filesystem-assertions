@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert\Constraint;
+namespace BeBat\FilesystemAssertions\Constraint;
 
 use PHPUnit\Framework\Constraint\Constraint;
 

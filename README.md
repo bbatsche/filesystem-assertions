@@ -1,8 +1,7 @@
 # PHPUnit Filesystem Assertions
 
-A collection of PHPUnit assertions for filesystem objects.
+This is a small collection PHPUnit assertions for testing filesystem entries. It is meant to compliment the assertions already built into PHPunit.
 
-This is a small collection PHPUnit assertions for testing filesystem objects. It's meant to compliment the assertions already built into PHPunit.
 
 ## Table of Contents
 
@@ -14,7 +13,7 @@ This is a small collection PHPUnit assertions for testing filesystem objects. It
 Use Composer to install the current version of PHPUnit Filesystem Asserts from [Packagist](https://packagist.org/packages/bebat/phpunit-filesystem-assert).
 
 ```bash
-composer require --dev bebat/phpunit-filesystem-assert
+composer require --dev bebat/filesystem-assertions
 ```
 
 The easiest way to add these assertions to your test case(s) is using a trait:
@@ -22,12 +21,12 @@ The easiest way to add these assertions to your test case(s) is using a trait:
 ```php
 <?php
 
-use BeBat\FilesystemAssert\FilesystemAssertsTrait;
+use BeBat\FilesystemAssertions\FilesystemAssertionsTrait;
 use PHPUnit\Framework\TestCase;
 
 class SomeTest extends TestCase
 {
-    use FilesystemAssertsTrait;
+    use FilesystemAssertionsTrait;
 
     // ...
 }
@@ -36,27 +35,27 @@ class SomeTest extends TestCase
 ## Available Assertions
 
 ```php
-// Assert that a filesystem object exists.
+// Assert that a filesystem entry exists.
 // These assertions only check if a path is a normal file, directory, or symbolic link.
 // They aren't compatible with block devices, sockets, or other nonstandard file types.
-assertFsObjectExists(string $file, string $message = '')
-assertFsObjectDoesNotExist(string $file, string $message = '')
+assertFsEntryExists(string $file, string $message = '')
+assertFsEntryDoesNotExist(string $file, string $message = '')
 
 // Assert that $directory contains one or more files.
 assertDirectoryContainsFiles(string $directory, array $files, string $message = '');
 assertDirectoryDoesNotContainFiles(string $directory, array $files, string $message = '')
+
+// Assert that $file is owned by a user ID or name.
+assertFileHasUserId(string $file, int $uid, string $message = '')
+assertFileHasUser(string $file, string $user, string $message = '')
+assertFileDoesNotHaveUserId(string $file, int $uid, string $message = '')
+assertFileDoesNotHaveUser(string $file, string $user, string $message = '')
 
 // Assert that $file has a group ID or name.
 assertFileHasGroupId(string $file, int $gid, string $message = '')
 assertFileHasGroup(string $file, string $group, string $message = '')
 assertFileDoesNotHaveGroupId(string $file, int $gid, string $message = '')
 assertFileDoesNotHaveGroup(string $file, string $group, string $message = '')
-
-// Assert that $file is owned bya user ID or name.
-assertFileHasUserId(string $file, int $uid, string $message = '')
-assertFileHasUser(string $file, string $user, string $message = '')
-assertFileDoesNotHaveUserId(string $file, int $uid, string $message = '')
-assertFileDoesNotHaveUser(string $file, string $user, string $message = '')
 
 // Assert that $file is executable.
 assertFileIsExecutable(string $file, string $message = '')

@@ -1,14 +1,32 @@
 {
-    "name": "bebat/phpunit-filesystem-assert",
+    "name": "bebat/filesystem-assertions",
     "description": "Collection of assertions about filesystem objects",
     "license": "MIT",
     "type": "library",
+    "keywords": [
+        "assertions",
+        "directory",
+        "file",
+        "filesystem",
+        "permissions",
+        "phpunit",
+        "test",
+        "testing",
+        "unit test",
+        "unit testing",
+        "unit"
+    ],
     "authors": [
         {
             "name": "Ben Batschelet",
-            "email": "ben.batschelet@gmail.com"
+            "email": "ben.batschelet@gmail.com",
+            "homepage": "https://github.com/bbatsche"
         }
     ],
+    "homepage": "https://github.com/bbatsche/filesystem-assertions",
+    "support": {
+        "issues": "https://github.com/bbatsche/filesystem-assertions/issues"
+    },
     "require": {
         "php": "^7.2 || ^8.0",
         "ext-mbstring": "*",
@@ -32,12 +50,12 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "BeBat\\FilesystemAssert\\": "src/"
+            "BeBat\\FilesystemAssertions\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BeBat\\FilesystemAssert\\Test\\": "test/"
+            "BeBat\\FilesystemAssertions\\Test\\": "test/"
         }
     },
     "config": {

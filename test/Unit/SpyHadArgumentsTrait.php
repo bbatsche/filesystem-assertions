@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert\Test\Unit;
+namespace BeBat\FilesystemAssertions\Test\Unit;
 
 use phpmock\spy\Spy;
 use PHPUnit\Framework\Assert;
