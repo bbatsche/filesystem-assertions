@@ -4,8 +4,10 @@ on:
   pull_request:
     paths:
       - '**.php'
-      - '**.json'
-      - '**.yml'
+      - composer.json'
+      - phpstan.neon.dist
+      - phpunit.xml
+      - '.github/workflows/**'
 
 jobs:
   acceptance-tests:
@@ -14,22 +16,42 @@ jobs:
 
     strategy:
       matrix:
-        php: ["8.1", "8.0", "7.4"]
-        composer_version: [2]
-        include:
-          - php: "7.3"
-            composer_version: 1
+        versions:
           - php: "7.2"
-            composer_version: 1
+            composer: 1
+          - php: "7.3"
+            composer: 1
+          - php: "7.4"
+            composer: 2
+          - php: "8.0"
+            composer: 2
+          - php: "8.1"
+            composer: 2
 
     steps:
       - uses: actions/checkout@v3
+      - name: Setup PHP ${{ matrix.versions.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "${{ matrix.versions.php }}"
+          coverage: pcov
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Dependencies
         uses: php-actions/composer@v6
         with:
-          php_version: "${{ matrix.php }}"
-          version: "${{ matrix.composer_version }}"
+          php_version: "${{ matrix.versions.php }}"
+          version: "${{ matrix.versions.composer }}"
 
       - name: Check Declared Dependencies
         run: ./vendor/bin/composer-require-checker
@@ -38,19 +60,24 @@ jobs:
         uses: php-actions/composer@v6
         with:
           command: "style:check"
-          php_version: "${{ matrix.php }}"
-          version: "${{ matrix.composer_version }}"
+          php_version: "${{ matrix.versions.php }}"
+          version: "${{ matrix.versions.composer }}"
 
       - name: Run Static Analysis
         uses: php-actions/composer@v6
         with:
           command: "test:static"
-          php_version: "${{ matrix.php }}"
-          version: "${{ matrix.composer_version }}"
+          php_version: "${{ matrix.versions.php }}"
+          version: "${{ matrix.versions.composer }}"
 
       - name: Run Unit & Functional Tests
         uses: php-actions/composer@v6
         with:
-          command: "test:unit"
-          php_version: "${{ matrix.php }}"
-          version: "${{ matrix.composer_version }}"
+          command: "test:coverage"
+          php_version: "${{ matrix.versions.php }}"
+          version: "${{ matrix.versions.composer }}"
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v2
+        with:
+          files: coverage.xml
