@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert\Test\Unit;
+namespace BeBat\FilesystemAssertions\Test\Unit;
 
-use BeBat\FilesystemAssert\Constraint\HasGroupId;
+use BeBat\FilesystemAssertions\Constraint\HasGroupId;
 use Codeception\AssertThrows;
 use phpmock\functions\FixedValueFunction;
 use phpmock\spy\Spy;
@@ -25,7 +25,7 @@ final class HasGroupIdTest extends TestCase
     protected function setUp(): void
     {
         $this->filegroupSpy = new Spy(
-            'BeBat\\FilesystemAssert\\Constraint',
+            'BeBat\\FilesystemAssertions\\Constraint',
             'filegroup',
             (new FixedValueFunction(501))->getCallable()
         );

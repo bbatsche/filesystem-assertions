@@ -37,11 +37,11 @@ jobs:
           coverage: pcov
           tools: composer:v${{ matrix.versions.composer }}
 
-      - name: Get composer cache directory
+      - name: Get Composer Cache Directory
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-      - name: Cache dependencies
+      - name: Cache Dependencies
         uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert\Test\Functional;
+namespace BeBat\FilesystemAssertions\Test\Functional;
 
-use BeBat\FilesystemAssert\FilesystemAssertsTrait;
+use BeBat\FilesystemAssertions\FilesystemAssertionsTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
  */
-final class FilesystemAssertsTest extends TestCase
+final class FilesystemAssertionsTest extends TestCase
 {
-    use FilesystemAssertsTrait;
+    use FilesystemAssertionsTrait;
 
     /** @var string */
     protected const FIXTURE_DIR = __DIR__ . '/_fixtures';
@@ -33,10 +33,10 @@ final class FilesystemAssertsTest extends TestCase
 
     public function testExists(): void
     {
-        self::assertFsObjectExists(self::FIXTURE_DIR);            // Directory
-        self::assertFsObjectExists(self::FIXTURE_DIR . '/File1'); // Regular file
-        self::assertFsObjectExists(self::FIXTURE_DIR . '/File3'); // Symbolic link
-        self::assertFsObjectDoesNotExist(self::FIXTURE_DIR . '/File4');
+        self::assertFsEntryExists(self::FIXTURE_DIR);            // Directory
+        self::assertFsEntryExists(self::FIXTURE_DIR . '/File1'); // Regular file
+        self::assertFsEntryExists(self::FIXTURE_DIR . '/File3'); // Symbolic link
+        self::assertFsEntryDoesNotExist(self::FIXTURE_DIR . '/File4');
     }
 
     public function testFileGroup(): void

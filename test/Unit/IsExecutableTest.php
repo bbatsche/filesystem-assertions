@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert\Test\Unit;
+namespace BeBat\FilesystemAssertions\Test\Unit;
 
-use BeBat\FilesystemAssert\Constraint\IsExecutable;
+use BeBat\FilesystemAssertions\Constraint\IsExecutable;
 use Codeception\AssertThrows;
 use phpmock\Mock;
 use phpmock\MockBuilder;
@@ -25,7 +25,7 @@ final class IsExecutableTest extends TestCase
     protected function setUp(): void
     {
         $this->isExecutableMock = (new MockBuilder())
-            ->setNamespace('BeBat\\FilesystemAssert\\Constraint')
+            ->setNamespace('BeBat\\FilesystemAssertions\\Constraint')
             ->setName('is_executable')
             ->setFunction(static function (string $path): bool {
                 return $path === '/some/executable/file';

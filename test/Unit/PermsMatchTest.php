@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert\Test\Unit;
+namespace BeBat\FilesystemAssertions\Test\Unit;
 
-use BeBat\FilesystemAssert\Constraint\PermsMatch;
+use BeBat\FilesystemAssertions\Constraint\PermsMatch;
 use Codeception\AssertThrows;
 use phpmock\functions\FixedValueFunction;
 use phpmock\spy\Spy;
@@ -25,7 +25,7 @@ final class PermsMatchTest extends TestCase
     protected function setUp(): void
     {
         $this->filepermsSpy = new Spy(
-            'BeBat\\FilesystemAssert\\Constraint',
+            'BeBat\\FilesystemAssertions\\Constraint',
             'fileperms',
             (new FixedValueFunction(octdec('100644')))->getCallable()
         );

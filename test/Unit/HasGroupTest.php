@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert\Test\Unit;
+namespace BeBat\FilesystemAssertions\Test\Unit;
 
-use BeBat\FilesystemAssert\Constraint\HasGroup;
+use BeBat\FilesystemAssertions\Constraint\HasGroup;
 use Codeception\AssertThrows;
 use phpmock\Mock;
 use phpmock\MockBuilder;
@@ -27,7 +27,7 @@ final class HasGroupTest extends TestCase
     protected function setUp(): void
     {
         $this->filegroupMock = (new MockBuilder())
-            ->setNamespace('BeBat\\FilesystemAssert\\Constraint')
+            ->setNamespace('BeBat\\FilesystemAssertions\\Constraint')
             ->setName('filegroup')
             ->setFunction(
                 static function (string $path) {
@@ -48,7 +48,7 @@ final class HasGroupTest extends TestCase
             )->build();
 
         $this->getgrgidMock = (new MockBuilder())
-            ->setNamespace('BeBat\\FilesystemAssert\\Constraint')
+            ->setNamespace('BeBat\\FilesystemAssertions\\Constraint')
             ->setName('posix_getgrgid')
             ->setFunction(
                 static function (int $gid) {

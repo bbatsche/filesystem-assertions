@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert\Test\Unit;
+namespace BeBat\FilesystemAssertions\Test\Unit;
 
-use BeBat\FilesystemAssert\Constraint\HasLinkTarget;
+use BeBat\FilesystemAssertions\Constraint\HasLinkTarget;
 use Codeception\AssertThrows;
 use phpmock\functions\FixedValueFunction;
 use phpmock\spy\Spy;
@@ -25,7 +25,7 @@ final class HasLinkTargetTest extends TestCase
     protected function setUp(): void
     {
         $this->readlinkSpy = new Spy(
-            'BeBat\\FilesystemAssert\\Constraint',
+            'BeBat\\FilesystemAssertions\\Constraint',
             'readlink',
             (new FixedValueFunction('/some/other/file'))->getCallable()
         );

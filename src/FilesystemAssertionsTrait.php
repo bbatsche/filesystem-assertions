@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace BeBat\FilesystemAssert;
+namespace BeBat\FilesystemAssertions;
 
-use BeBat\FilesystemAssert\Constraint\DirectoryContains;
-use BeBat\FilesystemAssert\Constraint\HasGroup;
-use BeBat\FilesystemAssert\Constraint\HasGroupId;
-use BeBat\FilesystemAssert\Constraint\HasLinkTarget;
-use BeBat\FilesystemAssert\Constraint\HasUser;
-use BeBat\FilesystemAssert\Constraint\HasUserId;
-use BeBat\FilesystemAssert\Constraint\IsExecutable;
-use BeBat\FilesystemAssert\Constraint\IsLink;
-use BeBat\FilesystemAssert\Constraint\PermsEqual;
-use BeBat\FilesystemAssert\Constraint\PermsMatch;
+use BeBat\FilesystemAssertions\Constraint\DirectoryContains;
+use BeBat\FilesystemAssertions\Constraint\HasGroup;
+use BeBat\FilesystemAssertions\Constraint\HasGroupId;
+use BeBat\FilesystemAssertions\Constraint\HasLinkTarget;
+use BeBat\FilesystemAssertions\Constraint\HasUser;
+use BeBat\FilesystemAssertions\Constraint\HasUserId;
+use BeBat\FilesystemAssertions\Constraint\IsExecutable;
+use BeBat\FilesystemAssertions\Constraint\IsLink;
+use BeBat\FilesystemAssertions\Constraint\PermsEqual;
+use BeBat\FilesystemAssertions\Constraint\PermsMatch;
 use PHPUnit\Framework\Assert;
 
 /**
  * A collections of assertions for filesystem objects.
  */
-trait FilesystemAssertsTrait
+trait FilesystemAssertionsTrait
 {
     /**
      * Assert that a directory contains one or more files.
@@ -50,7 +50,7 @@ trait FilesystemAssertsTrait
      */
     public static function assertFileDoesNotHaveGroup(string $file, string $group, string $message = ''): void
     {
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new HasGroup($group)), $message);
     }
@@ -60,7 +60,7 @@ trait FilesystemAssertsTrait
      */
     public static function assertFileDoesNotHaveGroupId(string $file, int $gid, string $message = ''): void
     {
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new HasGroupId($gid)), $message);
     }
@@ -70,7 +70,7 @@ trait FilesystemAssertsTrait
      */
     public static function assertFileDoesNotHaveUser(string $file, string $user, string $message = ''): void
     {
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new HasUser($user)), $message);
     }
@@ -80,7 +80,7 @@ trait FilesystemAssertsTrait
      */
     public static function assertFileDoesNotHaveUserId(string $file, int $uid, string $message = ''): void
     {
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new HasUserId($uid)), $message);
     }
@@ -90,7 +90,7 @@ trait FilesystemAssertsTrait
      */
     public static function assertFileHasGroup(string $file, string $group, string $message = ''): void
     {
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, new HasGroup($group), $message);
     }
@@ -100,7 +100,7 @@ trait FilesystemAssertsTrait
      */
     public static function assertFileHasGroupId(string $file, int $gid, string $message = ''): void
     {
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, new HasGroupId($gid), $message);
     }
@@ -110,7 +110,7 @@ trait FilesystemAssertsTrait
      */
     public static function assertFileHasUser(string $file, string $user, string $message = ''): void
     {
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, new HasUser($user), $message);
     }
@@ -120,7 +120,7 @@ trait FilesystemAssertsTrait
      */
     public static function assertFileHasUserId(string $file, int $uid, string $message = ''): void
     {
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, new HasUserId($uid), $message);
     }
@@ -130,7 +130,7 @@ trait FilesystemAssertsTrait
      */
     public static function assertFileIsExecutable(string $file, string $message = ''): void
     {
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, new IsExecutable(), $message);
     }
@@ -148,7 +148,7 @@ trait FilesystemAssertsTrait
      */
     public static function assertFileIsNotExecutable(string $file, string $message = ''): void
     {
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new IsExecutable()), $message);
     }
@@ -172,7 +172,7 @@ trait FilesystemAssertsTrait
             $perms = decoct($perms);
         }
 
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new PermsEqual($perms)), $message);
     }
@@ -188,7 +188,7 @@ trait FilesystemAssertsTrait
             $perms = (int) octdec($perms);
         }
 
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, Assert::logicalNot(new PermsMatch($perms)), $message);
     }
@@ -204,7 +204,7 @@ trait FilesystemAssertsTrait
             $perms = decoct($perms);
         }
 
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, new PermsEqual($perms), $message);
     }
@@ -222,7 +222,7 @@ trait FilesystemAssertsTrait
             $perms = (int) octdec($perms);
         }
 
-        static::assertFsObjectExists($file, $message);
+        static::assertFsEntryExists($file, $message);
 
         Assert::assertThat($file, new PermsMatch($perms), $message);
     }
@@ -230,7 +230,7 @@ trait FilesystemAssertsTrait
     /**
      * Assert that a path does not exist.
      */
-    public static function assertFsObjectDoesNotExist(string $file, string $message = ''): void
+    public static function assertFsEntryDoesNotExist(string $file, string $message = ''): void
     {
         Assert::assertThat(
             $file,
@@ -244,7 +244,7 @@ trait FilesystemAssertsTrait
      *
      * Note: This assertion doesn't check for more specialized file types, like sockets, named pipes, or block devices.
      */
-    public static function assertFsObjectExists(string $file, string $message = ''): void
+    public static function assertFsEntryExists(string $file, string $message = ''): void
     {
         Assert::assertThat(
             $file,
