@@ -6,8 +6,8 @@ This is a small collection PHPUnit assertions for testing filesystem entries. It
 [![Latest Stable Version](https://img.shields.io/packagist/v/bebat/filesystem-assertions.svg?style=flat-square)](https://packagist.org/packages/bebat/filesystem-assertions)
 [![Required PHP Version](https://img.shields.io/packagist/php-v/bebat/filesystem-assertions.svg?style=flat-square)](https://packagist.org/packages/bebat/filesystem-assertions)
 [![License](https://img.shields.io/packagist/l/bebat/filesystem-assertions?style=flat-square)](LICENSE)
-[![Acceptance Test Status](https://img.shields.io/github/actions/workflow/status/bbatsche/filesystem-asserts/acceptance.yml?branch=main&style=flat-square)](https://github.com/bbatsche/filesystem-asserts/actions/workflows/acceptance.yml)
-[![Code Coverage](https://img.shields.io/codecov/c/github/bbatsche/filesystem-asserts?style=flat-square)](https://codecov.io/gh/bbatsche/filesystem-asserts)
+[![Acceptance Test Status](https://img.shields.io/github/actions/workflow/status/bbatsche/filesystem-assertions/acceptance.yml?branch=main&style=flat-square)](https://github.com/bbatsche/filesystem-assertions/actions/workflows/acceptance.yml)
+[![Code Coverage](https://img.shields.io/codecov/c/github/bbatsche/filesystem-assertions?style=flat-square)](https://codecov.io/gh/bbatsche/filesystem-assertions)
 
 <!-- omit in toc -->
 ## Table of Contents
