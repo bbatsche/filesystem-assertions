@@ -132,6 +132,15 @@ In order to ensure code quality and consistency, PHPUnit Filesystem Assertions h
 - `test:coverage` &mdash; Run PHPUnit tests and generate a coverage report
 - `test` &mdash; Run `style:check`, `test:static`, and `test:unit` in sequence
 
+PHPUnit Filesystem Assertions uses [CaptainHook](http://captainhook.info/) to manage git hooks during development. Whenever you create a commit, CaptainHook will automatically lint your code and run through `composer test` for you. *Do not skip or disable the git hooks unless you have a very good reason for doing so!*
+
+Finally, there are two additional tools meant to keep dependencies well defined:
+
+- `vendor/bin/composer-require-checker` &mdash; Check that all dependencies are explicitly defined in `composer.json`
+- `composer normalize` &mdash; Make sure `composer.json` is in a consistent order and format
+
+If you modify `composer.json` make sure to run `composer normalize` before pushing your code to GitHub. Both these tools will be run against every pull request before merging.
+
 ### Creating a Pull Request
 
 The final step for whatever coding work you perform is, naturally, opening a pull request. The pull request template will guide you through the required steps and details to get your PR merged easily. Make sure to read the instructions, fill out the required sections, and mark the appropriate items on the checklist. Failure to do so could cause delays in getting your pull request reviewed and merged.
