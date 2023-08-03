@@ -57,6 +57,9 @@ jobs:
       - name: Install Dependencies
         run: composer install --no-interaction --no-suggest --no-progress
 
+      - name: Normalize composer.json
+        run: composer normalize --diff --dry-run --no-interaction --ansi
+
       - name: Check Declared Dependencies
         run: ./vendor/bin/composer-require-checker
 
