@@ -14,7 +14,7 @@ on:
 jobs:
   acceptance-tests:
     name: Acceptance Tests PHP ${{ matrix.versions.php }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
