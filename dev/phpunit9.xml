@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+         bootstrap="../vendor/autoload.php"
+         colors="true"
+         testdox="true"
+         convertDeprecationsToExceptions="true"
+         beStrictAboutChangesToGlobalState="true"
+         beStrictAboutOutputDuringTests="true">
+
+    <testsuites>
+        <testsuite name="Constraint Unit Tests">
+            <directory>../test/Unit</directory>
+        </testsuite>
+
+        <testsuite name="Assertion Functional Tests">
+            <directory>../test/Functional</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory>../src</directory>
+        </include>
+    </coverage>
+
+    <listeners>
+        <listener class="\Mockery\Adapter\Phpunit\TestListener"></listener>
+    </listeners>
+</phpunit>

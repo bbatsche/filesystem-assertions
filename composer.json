@@ -34,18 +34,20 @@
         "phpunit/phpunit": "^8.0 || ^9.0 || ^10.0"
     },
     "require-dev": {
-        "codeception/assert-throws": "^1.2",
-        "ergebnis/composer-normalize": "^2.15",
-        "friendsofphp/php-cs-fixer": "^3.4",
-        "maglnet/composer-require-checker": "^2.1 || ^3.8",
-        "mockery/mockery": "^1.3",
-        "php-mock/php-mock": "^2.3",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^1.5",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-mockery": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.1",
-        "phpstan/phpstan-strict-rules": "^1.1"
+        "captainhook/captainhook": "~5.14.4",
+        "captainhook/plugin-composer": "~5.3.3",
+        "codeception/assert-throws": "~1.3.0",
+        "ergebnis/composer-normalize": "~2.15.0",
+        "friendsofphp/php-cs-fixer": "~3.4.0 || ~3.22.0",
+        "maglnet/composer-require-checker": "^2.1.0 || ~4.4.0",
+        "mockery/mockery": "~1.3.6",
+        "php-mock/php-mock": "~2.4.1",
+        "phpstan/extension-installer": "~1.1.0 || ~1.3.1",
+        "phpstan/phpstan": "~1.10.26",
+        "phpstan/phpstan-deprecation-rules": "~1.1.3",
+        "phpstan/phpstan-mockery": "~1.1.1",
+        "phpstan/phpstan-phpunit": "~1.3.13",
+        "phpstan/phpstan-strict-rules": "~1.5.1"
     },
     "minimum-stability": "stable",
     "autoload": {
@@ -55,13 +57,15 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "BeBat\\FilesystemAssertions\\Test\\": "test/"
+            "BeBat\\FilesystemAssertions\\Test\\": "test/",
+            "BeBat\\FilesystemAssertions\\Dev\\": "dev/"
         }
     },
     "config": {
         "allow-plugins": {
             "ergebnis/composer-normalize": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "captainhook/plugin-composer": true
         },
         "sort-packages": true
     },
@@ -71,6 +75,7 @@
         }
     },
     "scripts": {
+        "post-update-cmd": "BeBat\\FilesystemAssertions\\Dev\\GeneratePhpUnitConfig::execute",
         "style:check": "php-cs-fixer fix -v --ansi --dry-run --diff",
         "style:fix": "php-cs-fixer fix -v --ansi",
         "test": [
