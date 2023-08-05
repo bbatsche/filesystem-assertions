@@ -2,9 +2,8 @@ parameters:
   level: 9
   paths:
     - src
+    - dev
     - test
   checkMissingIterableValueType: true
-  reportUnmatchedIgnoredErrors: false
   ignoreErrors:
     - '/Parameter .+ of method .+::(failureDescription|matches)\(\) should be contravariant with parameter \$.+ \(mixed\) of method PHPUnit\\Framework\\Constraint\\Constraint::(failureDescription|match)/'
-    - "/Casting to int something that's already int/"

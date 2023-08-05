@@ -1,12 +1,15 @@
+<!-- omit in toc -->
 # PHPUnit Filesystem Assertions
 
 This is a small collection PHPUnit assertions for testing filesystem entries. It is meant to compliment the assertions already built into PHPunit.
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/bebat/filesystem-assertions.svg?style=plastic)](https://packagist.org/packages/bebat/filesystem-assertions)
-[![License](https://img.shields.io/packagist/l/bebat/verify.svg?style=plastic)](https://packagist.org/packages/bebat/filesystem-assertions)
-[![Acceptance Test Status](https://github.com/bbatsche/filesystem-assertions/actions/workflows/acceptance.yml/badge.svg)](https://github.com/bbatsche/filesystem-assertions/actions/workflows/acceptance.yml)
-[![Code Coverage](https://codecov.io/gh/bbatsche/filesystem-assertions/branch/main/graph/badge.svg)](https://codecov.io/gh/bbatsche/filesystem-assertions)
+[![Latest Stable Version](https://img.shields.io/packagist/v/bebat/filesystem-assertions.svg?style=flat-square)](https://packagist.org/packages/bebat/filesystem-assertions)
+[![Required PHP Version](https://img.shields.io/packagist/php-v/bebat/filesystem-assertions.svg?style=flat-square)](https://packagist.org/packages/bebat/filesystem-assertions)
+[![License](https://img.shields.io/packagist/l/bebat/filesystem-assertions?style=flat-square)](LICENSE)
+[![Acceptance Test Status](https://img.shields.io/github/actions/workflow/status/bbatsche/filesystem-assertions/acceptance.yml?branch=main&style=flat-square)](https://github.com/bbatsche/filesystem-assertions/actions/workflows/acceptance.yml)
+[![Code Coverage](https://img.shields.io/codecov/c/github/bbatsche/filesystem-assertions?style=flat-square)](https://codecov.io/gh/bbatsche/filesystem-assertions)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 - [Installation](#installation)
